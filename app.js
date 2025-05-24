@@ -3,4 +3,5 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-console.log("Hello, World!");
+import Main from "./main/Main.js";
+Main.main();
