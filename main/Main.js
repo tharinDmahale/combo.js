@@ -1,8 +1,14 @@
 "use strict";
 
+import Server from "./server/Server.js";
+import Client from "./client/Client.js";
+
 class Main {
     static async main() {
-        console.log("Hello, World!");
+        console.info("Welcome to combo.js!");
+
+        await Server.start();
+        await Client.start();
     }
 }
 
