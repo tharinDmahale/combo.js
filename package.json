@@ -1,0 +1,21 @@
+{
+  "name": "combo",
+  "version": "1.0.0",
+  "description": "Full stack express.js based web development framework",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "app": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tharinDmahale/combo.js.git"
+  },
+  "keywords": ["node", "express", "web framework", "full stack", "combo.js"],
+  "author": "Tharin Deelaka Mahale <deelaka.mahale@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tharinDmahale/combo.js/issues"
+  },
+  "homepage": "https://github.com/tharinDmahale/combo.js#readme"
+}
