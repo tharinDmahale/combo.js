@@ -26,6 +26,7 @@ class Client {
         });
 
         app.use("/scripts", express.static(path.join(Client.#dirname, "./scripts")));
+        app.use("/styles", express.static(path.join(Client.#dirname, "./styles")));
 
         Router.initialize(app);
 
