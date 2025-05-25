@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <script type="module" src="/scripts/Home.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            Home.loadData();
+        });
+    </script>
+</head>
+
+<body>
+    <div id="root">
+        <header>
+            <h1>Welcome to combo.js!</h1>
+        </header>
+        <div id="content">
+            <h2>Server</h2>
+            <p>- Server status: <span id="serverStatus"></span></p>
+            <p>- Server time: <span id="serverTime"></span></p>
+            <h3>Server performance</h3>
+            <p>- Uptime: <span id="uptime"></span></p>
+            <h3>Memory usage</h3>
+            <p>- RSS: <span id="memoryRss"></span></p>
+            <p>- Heap total: <span id="memoryHeapTotal"></span></p>
+            <p>- Heap used: <span id="memoryHeapUsed"></span></p>
+            <p>- External: <span id="memoryExternal"></span></p>
+            <h3>CPU usage</h3>
+            <p>- User: <span id="cpuUser"></span></p>
+            <p>- System: <span id="cpuSystem"></span></p>
+        </div>
+        <footer>
+            <p>© 2025 combo.js</p>
+        </footer>
+    </div>
+</body>
+
+</html>

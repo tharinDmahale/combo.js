@@ -5,6 +5,7 @@ import { fileURLToPath } from "url";
 import express from "express";
 import favicon from "serve-favicon";
 import Cors from "./middleware/Cors.js";
+import Router from "./middleware/Router.js";
 
 class Client {
     static #dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,6 +24,10 @@ class Client {
             res.setHeader("X-Favicon", "/favicon.ico");
             next();
         });
+
+        app.use("/scripts", express.static(path.join(Client.#dirname, "./scripts")));
+
+        Router.initialize(app);
 
         app.listen(port, host, () => {
             console.info(`Client is running at ${protocol}://${host}:${port}`);
