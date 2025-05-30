@@ -1,7 +1,7 @@
 "use strict";
 
 class Home {
-    static async loadData() {
+    static async #getData() {
         const url = `http://localhost:3000/`;
         let res;
 
@@ -37,26 +37,42 @@ class Home {
                     details: error.message
                 }
             }
+
         }
+
+        return res;
+    }
+
+    static async #wait(seconds) {
+        await new Promise(resolve => setTimeout(resolve, (seconds * 1000)));
+    }
+
+    static #assign(id, value) {
+        document.getElementById(id).innerText = value;
+    }
+
+    static async loadData() {
+        const res = (await Home.#getData());
 
         if (res.status === 200) {
             const resData = res.data;
+
             // Server
-            document.getElementById("serverStatus").innerText = resData.serverStatus;
-            document.getElementById("serverTime").innerText = resData.serverTime;
+            Home.#assign("serverStatus", resData.serverStatus);
+            Home.#assign("serverTime", resData.serverTime);
 
             // Server performance
-            document.getElementById("uptime").innerText = resData.serverPerformance.uptime;
+            Home.#assign("uptime", resData.serverPerformance.uptime);
 
             // Server memory usage
-            document.getElementById("memoryRss").innerText = resData.serverPerformance.memoryUsage.rss;
-            document.getElementById("memoryHeapTotal").innerText = resData.serverPerformance.memoryUsage.heapTotal;
-            document.getElementById("memoryHeapUsed").innerText = resData.serverPerformance.memoryUsage.heapUsed;
-            document.getElementById("memoryExternal").innerText = resData.serverPerformance.memoryUsage.external;
+            Home.#assign("memoryRss", resData.serverPerformance.memoryUsage.rss);
+            Home.#assign("memoryHeapTotal", resData.serverPerformance.memoryUsage.heapTotal);
+            Home.#assign("memoryHeapUsed", resData.serverPerformance.memoryUsage.heapUsed);
+            Home.#assign("memoryExternal", resData.serverPerformance.memoryUsage.external);
 
             // Server CPU usage
-            document.getElementById("cpuUser").innerText = resData.serverPerformance.cpuUsage.user;
-            document.getElementById("cpuSystem").innerText = resData.serverPerformance.cpuUsage.system;
+            Home.#assign("cpuUser", resData.serverPerformance.cpuUsage.user);
+            Home.#assign("cpuSystem", resData.serverPerformance.cpuUsage.system);
 
             console.info("Server data loaded successfully!");
 
@@ -64,24 +80,26 @@ class Home {
             const errorStateMessage = "Error getting server data!";
 
             // Server
-            document.getElementById("serverStatus").innerText = "The server came across an error!";
-            document.getElementById("serverTime").innerText = errorStateMessage;
+            Home.#assign("serverStatus", "The server came across an error!");
+            Home.#assign("serverTime", errorStateMessage);
 
             // Server performance
-            document.getElementById("uptime").innerText = errorStateMessage;
+            Home.#assign("uptime", errorStateMessage);
 
             // Server memory usage
-            document.getElementById("memoryRss").innerText = errorStateMessage;
-            document.getElementById("memoryHeapTotal").innerText = errorStateMessage;
-            document.getElementById("memoryHeapUsed").innerText = errorStateMessage;
-            document.getElementById("memoryExternal").innerText = errorStateMessage;
+            Home.#assign("memoryRss", errorStateMessage);
+            Home.#assign("memoryHeapTotal", errorStateMessage);
+            Home.#assign("memoryHeapUsed", errorStateMessage);
+            Home.#assign("memoryExternal", errorStateMessage);
 
             // Server CPU usage
-            document.getElementById("cpuUser").innerText = errorStateMessage;
-            document.getElementById("cpuSystem").innerText = errorStateMessage;
+            Home.#assign("cpuUser", errorStateMessage);
+            Home.#assign("cpuSystem", errorStateMessage);
 
             console.error("Error loading server data! ", res.data.error, res.data.details);
         }
+
+        Home.#wait(1);
     }
 }
 
