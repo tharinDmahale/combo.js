@@ -6,6 +6,7 @@ import express from "express";
 import favicon from "serve-favicon";
 import Cors from "./middleware/Cors.js";
 import Router from "./middleware/Router.js";
+import Configurations from "./middleware/Configurations.js";
 
 class Server {
     static #dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,30 +18,11 @@ class Server {
         const serverPort = process.env.SERVER_PORT;
         const clientPort = process.env.CLIENT_PORT;
         const cors = Cors.getCors(protocol, host, clientPort);
+        const format = express.json();
+        const staticObjects = express.static(path.join(Server.#dirname, "./public"));
+        const faviconObject = favicon(path.join(Server.#dirname, "./public/favicon.ico"));
 
-        app.use(express.json());
-
-        app.use((req, res, next) => {
-            res.setHeader(cors.origin.header, cors.origin.value);
-            res.setHeader(cors.methods.header, cors.methods.value);
-            res.setHeader(cors.headers.header, cors.headers.value);
-            res.setHeader(cors.credentials.header, cors.credentials.value);
-
-            if (req.method === "OPTIONS") {
-                res.sendStatus(204);
-
-            } else {
-                next();
-            }
-        });
-
-        app.use(express.static(path.join(Server.#dirname, "./public")));
-        app.use(favicon(path.join(Server.#dirname, "./public/favicon.ico")));
-        app.use((req, res, next) => {
-            res.setHeader("X-Favicon", "/favicon.ico");
-            next();
-        });
-
+        Configurations.setup(app, format, cors, staticObjects, faviconObject);
         Router.initialize(app);
 
         app.listen(serverPort, host, () => {
