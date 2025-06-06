@@ -51,7 +51,7 @@ class Home {
         document.getElementById(id).innerText = value;
     }
 
-    static async loadData() {
+    static async #loadData() {
         const res = (await Home.#getData());
 
         if (res.status === 200) {
@@ -98,8 +98,13 @@ class Home {
 
             console.error("Error loading server data! ", res.data.error, res.data.details);
         }
+    }
 
-        Home.#wait(1);
+    static async streamData() {
+        while (true) {
+            await Home.#loadData();
+            await Home.#wait(1);
+        }
     }
 }
 
