@@ -14,8 +14,9 @@ class Server {
         const app = express();
         const protocol = process.env.PROTOCOL;
         const host = process.env.HOST;
-        const port = process.env.SERVER_PORT;
-        const cors = Cors.getCors(protocol, host, port);
+        const serverPort = process.env.SERVER_PORT;
+        const clientPort = process.env.CLIENT_PORT;
+        const cors = Cors.getCors(protocol, host, clientPort);
 
         app.use(express.json());
 
@@ -42,8 +43,8 @@ class Server {
 
         Router.initialize(app);
 
-        app.listen(port, host, () => {
-            console.info(`Server is running at ${cors.origin.value}`);
+        app.listen(serverPort, host, () => {
+            console.info(`Server is running at ${protocol}://${host}:${serverPort}`);
         });
     }
 }
