@@ -6,6 +6,7 @@ import express from "express";
 import favicon from "serve-favicon";
 import Cors from "./middleware/Cors.js";
 import Router from "./middleware/Router.js";
+import Configurations from "./middleware/Configurations.js";
 
 class Client {
     static #dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -15,19 +16,13 @@ class Client {
         const protocol = process.env.PROTOCOL;
         const host = process.env.HOST;
         const port = process.env.CLIENT_PORT;
+        const cors = Cors.getCors(protocol, host, port);
+        const staticObjects = express.static(path.join(Client.#dirname, "./public"));
+        const faviconObject = favicon(path.join(Client.#dirname, "./public/favicon.ico"));
+        const scripts = express.static(path.join(Client.#dirname, "./scripts"));
+        const styles = express.static(path.join(Client.#dirname, "./styles"));
 
-        app.use(Cors.getCors(protocol, host, port));
-
-        app.use(express.static(path.join(Client.#dirname, "./public")));
-        app.use(favicon(path.join(Client.#dirname, "./public/favicon.ico")));
-        app.use((req, res, next) => {
-            res.setHeader("X-Favicon", "/favicon.ico");
-            next();
-        });
-
-        app.use("/scripts", express.static(path.join(Client.#dirname, "./scripts")));
-        app.use("/styles", express.static(path.join(Client.#dirname, "./styles")));
-
+        Configurations.setup(app, cors, staticObjects, faviconObject, scripts, styles);
         Router.initialize(app);
 
         app.listen(port, host, () => {
