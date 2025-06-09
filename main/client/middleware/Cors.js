@@ -3,9 +3,9 @@
 import cors from "cors";
 
 class Cors {
-    static getCors(protocol, host, port) {
+    static getCors(clientUrl) {
         return cors({
-            origin: `${protocol}://${host}:${port}`,
+            origin: clientUrl,
             methods: ["GET", "POST", "PUT", "DELETE"],
             allowedHeaders: ["Content-Type", "Authorization"]
         });

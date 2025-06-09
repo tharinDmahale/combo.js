@@ -7,12 +7,12 @@ import Configurations from "./middleware/Configurations.js";
 class Server {
     static async start() {
         const app = express();
-        const serverUrl = Configurations.setup(app);
+        Configurations.setup(app);
 
         Router.initialize(app);
 
         app.listen(process.env.SERVER_PORT, process.env.HOST, () => {
-            console.info(`Server is running at ${serverUrl}`);
+            console.info(`Server is running at ${process.env.PROTOCOL}://${process.env.HOST}:${process.env.SERVER_PORT}`);
         });
     }
 }
