@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "app": "node app.js"
+    "app": "npm install && node app.js"
   },
   "repository": {
     "type": "git",
