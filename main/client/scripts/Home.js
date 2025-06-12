@@ -77,24 +77,24 @@ class Home {
             console.info("Server data loaded successfully!");
 
         } else {
-            const errorStateMessage = "Error getting server data!";
+            const serverShutdownMessage = "_";
 
             // Server
-            Home.#assign("serverStatus", "The server came across an error!");
-            Home.#assign("serverTime", errorStateMessage);
+            Home.#assign("serverStatus", "stopped");
+            Home.#assign("serverTime", serverShutdownMessage);
 
             // Server performance
-            Home.#assign("uptime", errorStateMessage);
+            Home.#assign("uptime", serverShutdownMessage);
 
             // Server memory usage
-            Home.#assign("memoryRss", errorStateMessage);
-            Home.#assign("memoryHeapTotal", errorStateMessage);
-            Home.#assign("memoryHeapUsed", errorStateMessage);
-            Home.#assign("memoryExternal", errorStateMessage);
+            Home.#assign("memoryRss", serverShutdownMessage);
+            Home.#assign("memoryHeapTotal", serverShutdownMessage);
+            Home.#assign("memoryHeapUsed", serverShutdownMessage);
+            Home.#assign("memoryExternal", serverShutdownMessage);
 
             // Server CPU usage
-            Home.#assign("cpuUser", errorStateMessage);
-            Home.#assign("cpuSystem", errorStateMessage);
+            Home.#assign("cpuUser", serverShutdownMessage);
+            Home.#assign("cpuSystem", serverShutdownMessage);
 
             console.error("Error loading server data! ", res.data.error, res.data.details);
         }
