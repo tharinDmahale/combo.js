@@ -8,28 +8,18 @@ class Main {
         return new Promise(resolve => setTimeout(resolve, (time * 1000)));
     }
 
-    static async #setupGracefulShutdown() {
-        const shutdown = async () => {
-            console.info("\nShutting down combo.js...");
+    static async #shutdown() {
+        console.info("\nShutting down combo.js...");
 
-            if (Client.stop) {
-                await Client.stop();
-            }
+        await Client.stop();
+        await Server.stop();
 
-            if (Server.stop) {
-                await Server.stop();
-            }
-
-            console.info("Runtime terminated\n");
-            process.exit(0);
-        };
-
-        process.on("SIGINT", shutdown);
-        process.on("SIGTERM", shutdown);
+        console.info(`Process {PID:${process.pid}} terminated.`);
+        process.exit(0);
     }
 
     static async main() {
-        console.info("\nInitializing combo.js...");
+        console.info(`\nProcess {PID:${process.pid}} started.\nInitializing combo.js...`);
 
         console.info("\nStarting server...");
         await Main.#wait(2);
@@ -44,7 +34,8 @@ class Main {
         await Main.#wait(2);
         console.info("\nInitialization complete.\nTo exit, please press Ctrl+C.");
 
-        Main.#setupGracefulShutdown();
+        process.on("SIGINT", Main.#shutdown);
+        process.on("SIGTERM", Main.#shutdown);
     }
 }
 
