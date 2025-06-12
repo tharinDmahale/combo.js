@@ -5,6 +5,15 @@ import Server from "./server/Server.js";
 import Client from "./client/Client.js";
 
 class Main {
+    static #combo() {
+        console.log(`
+        ||     ___   __    _  _   ___     __     ||
+        ||    |     |  |  | \\/ |  |__|   |  |    ||
+        ||    |___  |__|  |    |  |___|  |__|    ||
+        ||                                       ||
+        `);
+    }
+
     static async #wait(time) {
         return new Promise(resolve => setTimeout(resolve, (time * 1000)));
     }
@@ -20,6 +29,7 @@ class Main {
     }
 
     static async main() {
+        Main.#combo();
         console.info(`\nProcess {PID:${process.pid}} started.\nInitializing combo.js...`);
 
         console.info("\nStarting server...");
