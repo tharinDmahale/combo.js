@@ -1,5 +1,6 @@
 "use strict";
 
+import { exec } from "child_process";
 import Server from "./server/Server.js";
 import Client from "./client/Client.js";
 
@@ -33,6 +34,9 @@ class Main {
 
         await Main.#wait(2);
         console.info("\nInitialization complete.\nTo exit, please press Ctrl+C.");
+
+        await Main.#wait(2);
+        exec("start http://localhost:3001/");
 
         process.on("SIGINT", Main.#shutdown);
         process.on("SIGTERM", Main.#shutdown);
