@@ -1,5 +1,5 @@
 # combo.js
-Full stack express.js based web development framework
+Full stack express.js based web development framework.
 
 ---
 
