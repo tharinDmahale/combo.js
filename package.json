@@ -2,7 +2,7 @@
   "name": "full-combo-stack",
   "version": "1.0.1",
   "description": "Full stack express.js based web development framework",
-  "main": "index.js",
+  "main": "./app.js",
   "type": "module",
   "scripts": {
     "app": "npm install && node app.js"
