@@ -1,6 +1,6 @@
 {
   "name": "full-combo-stack",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Full stack express.js based web development framework",
   "main": "index.js",
   "type": "module",
