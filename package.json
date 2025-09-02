@@ -1,5 +1,5 @@
 {
-  "name": "combo",
+  "name": "full-combo-stack",
   "version": "1.0.0",
   "description": "Full stack express.js based web development framework",
   "main": "index.js",
