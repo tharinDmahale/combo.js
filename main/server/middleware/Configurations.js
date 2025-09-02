@@ -39,8 +39,6 @@ class Configurations {
             res.setHeader("X-Favicon", "/favicon.ico");
             next();
         });
-
-        
     }
 }
 
