@@ -19,6 +19,7 @@
     "combo.js"
   ],
   "author": "Tharin Deelaka Mahale <deelaka.mahale@gmail.com>",
+  "readme": "./README.md",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tharinDmahale/combo.js/issues"
