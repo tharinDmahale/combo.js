@@ -21,6 +21,9 @@
   "author": "Tharin Deelaka Mahale <deelaka.mahale@gmail.com>",
   "readme": "./README.md",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "bugs": {
     "url": "https://github.com/tharinDmahale/combo.js/issues"
   },
