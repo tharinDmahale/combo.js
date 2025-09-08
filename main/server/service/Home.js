@@ -1,5 +1,7 @@
 "use strict";
 
+import Utilities from "../../utilities/Utilities";
+
 class Home {
     static getPath() {
         return "/";
@@ -34,7 +36,7 @@ class Home {
             };
 
         } catch (error) {
-            console.error("Error in Home service! ", error);
+            Utilities.logError(`Error in Home service!\n${error}`);
 
             responseCode = 500;
             responseBody = {

@@ -36,8 +36,7 @@ class Home {
                     error: `Error fetching data from ${url}!`,
                     details: error.message
                 }
-            }
-
+            };
         }
 
         return res;
