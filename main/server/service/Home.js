@@ -1,6 +1,6 @@
 "use strict";
 
-import Utilities from "../../utilities/Utilities";
+import Utilities from "../../utilities/Utilities.js";
 
 class Home {
     static getPath() {
