@@ -27,6 +27,19 @@ class Utilities {
     static logSuccess(message) {
         console.log(chalk.green(message));
     }
+
+    static getBrowserInitCommand() {
+        let command;
+        
+        if (process.platform === "win32") {
+            command = "start http://localhost:3001/";
+
+        } else {
+            command = "open http://localhost:3001/";
+        }
+
+        return command;
+    }
 }
 
 export default Utilities;

@@ -35,7 +35,7 @@ class Main {
         Utilities.logInfo("To exit, please press Ctrl+C.");
 
         await Utilities.wait(2);
-        exec("start http://localhost:3001/");
+        exec(Utilities.getBrowserInitCommand());
 
         process.on("SIGINT", Main.#shutdown);
         process.on("SIGTERM", Main.#shutdown);
