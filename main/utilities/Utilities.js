@@ -1,6 +1,7 @@
 "use strict";
 
 import chalk from "chalk";
+import { exec } from "child_process";
 
 class Utilities {
     static combo() {
@@ -28,17 +29,18 @@ class Utilities {
         console.log(chalk.green(message));
     }
 
-    static getBrowserInitCommand() {
+    static initBrowser() {
+        const url = "http://localhost:3001/";
         let command;
         
         if (process.platform === "win32") {
-            command = "start http://localhost:3001/";
+            command = `start ${url}`;
 
         } else {
-            command = "open http://localhost:3001/";
+            command = `open ${url}`;
         }
 
-        return command;
+        exec(command);
     }
 }
 

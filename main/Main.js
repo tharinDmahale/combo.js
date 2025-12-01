@@ -1,6 +1,5 @@
 "use strict";
 
-import { exec } from "child_process";
 import Utilities from "./utilities/Utilities.js";
 import Server from "./server/Server.js";
 import Client from "./client/Client.js";
@@ -10,7 +9,10 @@ class Main {
         Utilities.logInfo("\nShutting down combo.js...");
 
         await Client.stop();
+        await Utilities.wait(2);
+        
         await Server.stop();
+        await Utilities.wait(2);
 
         Utilities.logInfo(`Process {PID:${process.pid}} terminated.`);
         process.exit(0);
@@ -35,7 +37,7 @@ class Main {
         Utilities.logInfo("To exit, please press Ctrl+C.");
 
         await Utilities.wait(2);
-        exec(Utilities.getBrowserInitCommand());
+        Utilities.initBrowser();
 
         process.on("SIGINT", Main.#shutdown);
         process.on("SIGTERM", Main.#shutdown);
